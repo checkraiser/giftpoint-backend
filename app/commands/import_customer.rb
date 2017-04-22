@@ -16,15 +16,15 @@ class ImportCustomer
   attr_accessor :campaign, :name, :phone
 
   def customer
-    Customer.transaction do 
+    transaction do 
     	customer = CreateCustomer.call(name, phone)
     	if customer.success?
     	  cc = CreateCampaignCustomer.call campaign, customer.result
   	    return cc.result if cc.success?
         prepend_errors(cc)    
+        rollback "Error"
       else
         prepend_errors(customer)    
-        raise ActiveRecord::Rollback, "Error"
       end
     end
   end
