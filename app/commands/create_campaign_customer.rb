@@ -19,7 +19,7 @@ class CreateCampaignCustomer
   	return cc if cc 
   	cc = CampaignCustomer.new campaign: campaign,
   							  customer: customer
-	return cc if cc.save
-	prepend_errors(cc)  							  
+  	return cc if cc.save
+  	prepend_errors cc
   end
 end

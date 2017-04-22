@@ -8,11 +8,22 @@ DatabaseCleaner.start
 
 module CampaignHelper
   def campaign
-  	@campaign ||= CreateCampaign.call("campaign 1", "content", time, time + 1.month, "Hai Phong", 10).result
+  	@campaign ||= CreateCampaign.call("campaign 1", "content", time, time + 1.month, "Hai Phong", 10, product).result
+  end
+
+  def campaigns
+    @campaigns ||= [
+      CreateCampaign.call("campaign 1", "content 1", time, time + 1.month, "Hai Phong 1", 10, product).result,
+      CreateCampaign.call("campaign 2", "content 2", time, time + 1.month, "Hai Phong 2", 10, product).result
+    ]
   end
 
   def campaign_customer
   	@campaign_customer ||= ImportCustomer.call(campaign, "customer 1", "01214115322").result
+  end
+
+  def product
+    @product ||= CreateProduct.call("product 1", "code product 1", 10, "kg").result
   end
 end
 

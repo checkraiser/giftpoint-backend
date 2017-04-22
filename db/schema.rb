@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170422104850) do
+ActiveRecord::Schema.define(version: 20170422174833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,14 +28,16 @@ ActiveRecord::Schema.define(version: 20170422104850) do
   end
 
   create_table "campaigns", force: :cascade do |t|
-    t.string   "name",                   null: false
+    t.string   "name",                      null: false
     t.text     "content"
-    t.datetime "start_time",             null: false
-    t.datetime "end_time",               null: false
-    t.string   "location",               null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "count",      default: 0, null: false
+    t.datetime "start_time",                null: false
+    t.datetime "end_time",                  null: false
+    t.string   "location",                  null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "product_count", default: 0, null: false
+    t.integer  "product_id"
+    t.index ["product_id"], name: "index_campaigns_on_product_id", using: :btree
   end
 
   create_table "customers", force: :cascade do |t|
@@ -44,6 +46,16 @@ ActiveRecord::Schema.define(version: 20170422104850) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["phone"], name: "index_customers_on_phone", using: :btree
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name",                     null: false
+    t.string   "code",                     null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.float    "price",      default: 0.0, null: false
+    t.string   "unit",                     null: false
+    t.index ["code"], name: "index_products_on_code", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -57,4 +69,5 @@ ActiveRecord::Schema.define(version: 20170422104850) do
 
   add_foreign_key "campaign_customers", "campaigns"
   add_foreign_key "campaign_customers", "customers"
+  add_foreign_key "campaigns", "products"
 end

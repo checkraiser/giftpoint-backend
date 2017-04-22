@@ -10,9 +10,9 @@ class GenerateCustomerCodeTest < ActiveSupport::TestCase
   	records = [{name: "n1", phone: "p1"},
   			   {name: "n2", phone: "p2"},
   			   {name: "n3", phone: "p3"}]
-	BatchImportCustomers.call(campaign, records)
-	codes = BatchGenerateCustomerCodes.call(campaign).result
-	assert CampaignCustomer.count, 3
-	assert CampaignCustomer.pluck(:code), codes
+  	BatchImportCustomers.call(campaign, records)
+  	codes = BatchGenerateCustomerCodes.call(campaign).result
+  	assert CampaignCustomer.count, 3
+  	assert CampaignCustomer.pluck(:code), codes
   end
 end

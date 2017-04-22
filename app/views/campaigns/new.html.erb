@@ -1,0 +1,41 @@
+<%= simple_form_for(@campaign, url: campaigns_path,  html: { class: 'form-horizontal' }) do |f| %>
+  <div class="row">
+	  <div class="col-md-3">
+	  	<%= f.input :name %>
+	  </div>
+	  <div class="col-md-8 col-md-offset-1">
+	  	<%= f.input :content %>
+	  </div>
+  </div>
+  <div class="row">
+	  <div class="col-md-3">
+		  <%= f.input :start_time, as: :string, input_html: { class: "datepicker" } %>
+	</div>
+	<div class="col-md-3 col-md-offset-1">
+  		<%= f.input :end_time, as: :string, input_html: { class: "datepicker" } %>
+  	</div>
+  </div>
+  <div class="row">
+	<div class="col-md-3">
+  		<%= f.input :location %>
+  	</div>
+  	<div class="col-md-2 col-md-offset-1">
+  		<%= f.input :product_count %>
+  	</div>  	
+  </div>
+  <div class="row">
+  	<div class="col-md-6">
+  		<%= f.input :product_id, collection: Product.all, input_html: { class: "select2" } %>
+  	</div>
+	</div>
+	<%= f.submit :Create, class: "btn btn-primary" %>  		
+  </div>
+  
+  
+<% end %>
+<script>
+$(document).ready(function(){
+	$("input#campaign_form_location").geocomplete();
+	$(".select2").select2();
+});
+</script>

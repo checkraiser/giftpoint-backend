@@ -28,3 +28,6 @@ en:
           attributes:
             end_time:
               after: "end_time must be after start_time"
+              invalid_datetime: "end_time is invalid"
+            start_time:
+              invalid_datetime: "start_time is invalid"

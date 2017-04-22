@@ -14,4 +14,15 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require_tree .
+//= require bootstrap-table.min
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.vi.js
+//= require jquery.geocomplete
+//= require select2
+
+$(function() {
+    $('input.datepicker').data({behaviour: "datepicker"}).datepicker();
+});
+$(".select2").select2({
+  theme: "bootstrap"
+});

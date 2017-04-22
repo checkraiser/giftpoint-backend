@@ -1,0 +1,27 @@
+<table class="table" data-toggle="table">
+    <thead>
+        <tr>
+            <th data-field="id">ID</th>
+            <th data-field="name">Name</th>
+            <th data-field="content">Content</th>
+            <th data-field="start_time">Start Time</th>
+            <th data-field="end_time">End Time</th>
+            <th data-field="location">Location</th>
+            <th data-field="product_count">Count</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @resources.each do |campaign| %>
+        <tr>
+        <td><%= campaign.id %> </td>
+        <td><%= campaign.name %></td>
+        <td><%= campaign.content %></td>
+        <td><%= campaign.start_time %></td>
+        <td><%= campaign.end_time %></td>
+        <td><%= campaign.location %></td>
+        <td><%= campaign.product_count %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+<%= paginate @resources %>

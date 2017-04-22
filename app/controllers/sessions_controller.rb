@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def create
   	@session = Session.new(session_params)
   	if @session.login(session)
-  		redirect_to root_path
+  		redirect_to root_path, notice: "Welcome back"
   	else
   		render :new
   	end
@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
   def destroy
   	session[:user_id] = nil
-  	redirect_to root_path
+  	redirect_to root_path, notice: "You've logged out"
   end
 
   private
