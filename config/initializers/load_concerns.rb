@@ -1,0 +1,1 @@
+Dir["#{Rails.root}/app/commands/concerns/*.rb"].each {|file| require file }
