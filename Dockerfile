@@ -18,7 +18,7 @@ COPY Gemfile $APP
 COPY Gemfile.lock $APP
 RUN bundle install --jobs 20 --retry 5
 # compile assets
-RUN RAILS_ENV=production bin/rails assets:precompile
+RUN bundle exec rake RAILS_ENV=production assets:precompile
 
 COPY . $APP
 
