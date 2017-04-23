@@ -23,4 +23,3 @@ RUN bundle install --jobs 20 --retry 5
 COPY . $APP
 # compile assets
 RUN bundle exec rake RAILS_ENV=production assets:precompile
-CMD puma -C config/puma.rb
