@@ -1,0 +1,2 @@
+docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -e PGDATA=/home/checkraiser/pgdata -d postgres:9.6
+docker run --name backend --link some-postgres:postgres -p 80:80 -e RAILS_SERVE_STATIC_FILES=$RAILS_SERVE_STATIC_FILES -e SECRET_KEY_BASE=$SECRET_KEY_BASE -e PORT=80 -e RAILS_ENV=production -d checkraiser/giftpoint-backend

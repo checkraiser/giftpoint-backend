@@ -1,17 +1,6 @@
 module PrependErrors
   extend ActiveSupport::Concern
-
-  included do 
-  	prepend SimpleCommand
-
-    def self.get_dependencies
-      return if self.dependencies.empty?
-      self.dependencies.each do |dep|
-        p dep
-        dep.get_dependencies
-      end
-    end
-  end
+  prepend SimpleCommand
 
   def transaction(&block)
   	ActiveRecord::Base.transaction do 
