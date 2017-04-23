@@ -1,4 +1,5 @@
 class CampaignCustomer < ApplicationRecord
-  belongs_to :campaign
-  belongs_to :customer
+  include CampaignCustomerAssociation, 
+  		  CampaignCustomerValidator, 
+  		  CampaignCustomerScope
 end

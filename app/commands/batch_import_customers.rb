@@ -18,11 +18,14 @@ class BatchImportCustomers
   	result = []
   	return [] if customer_records.empty?
   	customer_records.each do |record|
-  	  name = record[:name]
-  	  phone = record[:phone]
-  	  if name && phone
-  	  	ic = ImportCustomer.call(campaign, name, phone)
-  	  	result << ic.result if ic.success?
+  	  name = record[:name].to_s
+  	  phone = record[:phone].to_s
+      gen_count = record[:gen_count].to_i
+  	  if gen_count > 0
+        gen_count.times do 
+  	  	  ic = ImportCustomer.call(campaign, name, phone)
+  	  	  result << ic.result if ic.success?
+        end
   	  end
   	end
   	return result

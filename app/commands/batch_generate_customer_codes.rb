@@ -1,8 +1,8 @@
 class BatchGenerateCustomerCodes
   include PrependErrors
   
-  def initialize(campaign)
-  	@campaign = campaign
+  def initialize(campaign_customers)
+  	@campaign_customers = campaign_customers
   end
 
   def call
@@ -11,11 +11,11 @@ class BatchGenerateCustomerCodes
 
   private
 
-  attr_accessor :campaign
+  attr_accessor :campaign_customers
 
   def codes
   	result = []
-  	campaign.campaign_customers.each do |cc|
+  	campaign_customers.generatable.each do |cc|
   	  command = GenerateCustomerCode.call(cc)
   	  if command.success?
   	  	result << command.result

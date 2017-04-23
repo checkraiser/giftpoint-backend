@@ -1,8 +1,9 @@
 class CampaignsController < ApplicationController
   before_action :require_admin
+  before_action :require_campaign, only: [:show, :edit, :update]  
 
   def index
-    @resources = Campaign.page(params[:page]).per(params[:per_page])
+    @resources = paginate(Campaign)
   end
 
   def new
@@ -16,6 +17,10 @@ class CampaignsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @campaign_customers = paginate @campaign.campaign_customers
   end
 
   def edit
@@ -36,5 +41,10 @@ class CampaignsController < ApplicationController
       :product_count,
       :product_id
     )
+  end
+
+  def require_campaign
+    @campaign ||= Campaign.find_by_id(params[:id])
+    redirect_to root_path and return unless @campaign
   end
 end

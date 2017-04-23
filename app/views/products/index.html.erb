@@ -1,0 +1,26 @@
+<h2>Import Products</h2>
+<%= form_tag import_products_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+<table class="table" data-toggle="table">
+    <thead>
+        <tr>
+            <th data-field="name">Name</th>
+            <th data-field="code">Code</th>
+            <th data-field="price">Price</th>
+            <th data-field="unit">Unit</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @resources.each do |product| %>
+        <tr>
+        <td><%= product.name %></td>
+        <td><%= product.code %></td>
+        <td><%= product.price %></td>
+        <td><%= product.unit %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+<%= paginate @resources %>

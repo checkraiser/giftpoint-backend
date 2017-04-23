@@ -8,7 +8,6 @@ class CampaignFormTest < ActiveSupport::TestCase
   	}
   	form = CampaignForm.new(params)
   	form.save
-  	p form
-  	#assert form.errors.messages, {:location=>["can't be blank"]}
+  	assert Campaign.count, 1
   end
 end

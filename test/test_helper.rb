@@ -18,12 +18,23 @@ module CampaignHelper
     ]
   end
 
+  def campaign_customers
+    return @campaign_customers if @campaign_customers
+    ImportCustomer.call(campaign, "customer 1", "01214115322")
+    ImportCustomer.call(campaign, "customer 2", "01214115323")
+    @campaign_customers = CampaignCustomer.all
+  end
+
   def campaign_customer
   	@campaign_customer ||= ImportCustomer.call(campaign, "customer 1", "01214115322").result
   end
 
   def product
     @product ||= CreateProduct.call("product 1", "code product 1", 10, "kg").result
+  end
+
+  def customers_file
+    @customer_file ||= File.open("#{Rails.root}/test/fixtures/files/customers.xls")
   end
 end
 

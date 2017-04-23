@@ -7,9 +7,9 @@ class SetSmsStatusTest < ActiveSupport::TestCase
   end
 
   test "batch set" do 
-  	records = [{name: "n1", phone: "p1"},
-  			   {name: "n2", phone: "p2"},
-  			   {name: "n3", phone: "p3"}]
+  	records = [{name: "n1", phone: "p1", gen_count: 1},
+  			   {name: "n2", phone: "p2", gen_count: 1},
+  			   {name: "n3", phone: "p3", gen_count: 1}]
 	bic = BatchImportCustomers.call(campaign, records).result 
 	bsms = BatchSetSmsStatus.call(campaign).result
 	assert CampaignCustomer.pluck(:sms_status), [true, true, true]

@@ -15,11 +15,11 @@ class CreateCampaignCustomer
   attr_accessor :campaign, :customer
 
   def campaign_customer
-  	cc = CampaignCustomer.find_by(campaign_id: campaign.id, customer_id: customer.id)
-  	return cc if cc 
   	cc = CampaignCustomer.new campaign: campaign,
-  							  customer: customer
+  							              customer: customer
   	return cc if cc.save
   	prepend_errors cc
+  rescue => e 
+    errors.add :create_campaign_customer, e.message
   end
 end

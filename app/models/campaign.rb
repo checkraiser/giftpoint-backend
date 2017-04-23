@@ -1,3 +1,5 @@
 class Campaign < ApplicationRecord
-  include CampaignValidator, CampaignAssociation, CampaignScope
+  include CampaignValidator, 
+  		  CampaignAssociation, 
+  		  CampaignScope
 end

@@ -13,7 +13,7 @@
     <tbody>
     <% @resources.each do |campaign| %>
         <tr>
-        <td><%= campaign.id %> </td>
+        <td><%= link_to campaign.name, campaign_path(campaign) %> </td>
         <td><%= campaign.name %></td>
         <td><%= campaign.content %></td>
         <td><%= campaign.start_time %></td>

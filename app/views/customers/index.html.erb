@@ -1,0 +1,19 @@
+<table class="table" data-toggle="table">
+    <thead>
+        <tr>
+            <th data-field="id">ID</th>
+            <th data-field="name">Name</th>
+            <th data-field="phone">Phone</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @resources.each do |customer| %>
+        <tr>
+        <td><%= customer.id %> </td>
+        <td><%= customer.name %></td>
+        <td><%= customer.phone %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+<%= paginate @resources %>

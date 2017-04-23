@@ -1,0 +1,30 @@
+<%= @campaign.name %>
+<div class="row">
+<div class="col-md-4">
+<h2>Import Customers</h2>
+<%= form_tag import_customers_path, multipart: true do %>
+  <%= hidden_field_tag :campaign_id, @campaign.id %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+</div>
+<div class="col-md-4">
+<div class="row">
+<h3>Generate Codes</h3>
+<%= form_tag generate_code_customers_path, multipart: true do %>
+  <%= hidden_field_tag :campaign_id, @campaign.id %>
+  <%= submit_tag "Generate" %>
+<% end %>
+</div>
+<div class="row">
+<h3>Export Excel</h3>
+</div>
+</div>
+</div>
+
+<div class="row">
+<h3>Campaign's Customers</h3>
+
+<%= render partial: "campaign_customers/index", locals: { campaign_customers: @campaign_customers } %>
+
+</div>

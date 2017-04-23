@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
-  resources :campaigns, only: [:index, :new, :create, :edit, :update]
+  resources :products, only: [:index, :new, :create] do 
+  	collection do 
+  	  post :import
+  	end
+  end
+  resources :users, only: [:index, :new, :create]
+  resources :customers, only: [:index] do 
+  	collection do 
+  	  post :import
+  	  post :generate_code
+  	end
+  end
+  resources :campaigns, only: [:index, :new, :create, :edit, :update, :show]
   get '/login', to: 'sessions#new', as: :login
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

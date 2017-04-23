@@ -1,3 +1,5 @@
 class User < ApplicationRecord  
-  include Authenticable, UserScope, UserValidator
+  include Authenticable, 
+  		  UserScope, 
+  		  UserValidator
 end
