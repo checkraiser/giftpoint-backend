@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -qq -y --no-install-recommends \
       build-essential git && \
       apt-get clean && \
       rm -rf /var/lib/apt/lists/*
-
+RUN apt-get update
 RUN apt-get install -y nodejs
 
 ENV APP /app
