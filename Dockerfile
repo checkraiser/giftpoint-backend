@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -qq -y --no-install-recommends \
       apt-get clean && \
       rm -rf /var/lib/apt/lists/*
 
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash
+RUN apt-get install -y nodejs
 
 ENV APP /app
 RUN mkdir -p $APP
