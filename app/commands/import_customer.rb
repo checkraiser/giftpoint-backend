@@ -11,6 +11,10 @@ class ImportCustomer
   	customer
   end	
 
+  def self.dependencies
+    [CreateCustomer, CreateCampaignCustomer]
+  end
+
   private
 
   attr_accessor :campaign, :name, :phone

@@ -15,6 +15,10 @@ class CreateCampaign
   	campaign
   end
 
+  def self.dependencies
+    []
+  end
+
   private
 
   attr_accessor :name, :content, :start_time, :end_time, :location, :product_count, :product

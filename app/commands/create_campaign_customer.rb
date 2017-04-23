@@ -10,6 +10,10 @@ class CreateCampaignCustomer
   	campaign_customer
   end
 
+  def self.dependencies
+    []
+  end
+
   private
 
   attr_accessor :campaign, :customer

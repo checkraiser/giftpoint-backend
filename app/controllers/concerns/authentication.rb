@@ -2,18 +2,20 @@ module Authentication
   extend ActiveSupport::Concern
 
   included do 
+    before_action :require_login
   	helper_method :logged_in?
   	helper_method :current_user
   end
 
   def require_login
-  	if !Session.check(session)
-  		redirect_to login_path and return
-  	end
+  	unless logged_in?
+  		redirect_to login_path, notice: "Please log in"
+      return
+    end
   end
 
   def logged_in?
-  	Session.check(session)
+  	!current_user.nil?
   end
 
   def current_user

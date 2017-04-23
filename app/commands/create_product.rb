@@ -12,6 +12,10 @@ class CreateProduct
   	product
   end
 
+  def self.dependencies
+    []
+  end
+
   private
 
   attr_accessor :name, :code, :price, :unit

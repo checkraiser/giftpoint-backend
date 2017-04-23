@@ -9,5 +9,17 @@ module CampaignCustomerScope
   	scope :unapproved,  -> { where(code_status: false) }
   	scope :generatable, -> { ungenerated.unapproved }
   	scope :cleanable,   -> { unapproved }
+    scope :exportable,  -> { approved }
+    scope :smsable,     -> { approved }
+  end
+
+  class_methods do 
+    def approve_all
+      approvable.update_all(code_status: true)
+    end
+
+    def clean 
+      cleanable.delete_all
+    end
   end
 end

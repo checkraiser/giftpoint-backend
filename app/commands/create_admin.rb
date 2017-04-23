@@ -11,6 +11,10 @@ class CreateAdmin
   	user
   end
 
+  def self.dependencies
+    []
+  end
+  
   private
 
   attr_accessor :name, :email, :password

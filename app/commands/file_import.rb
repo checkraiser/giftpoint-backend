@@ -9,6 +9,10 @@ class FileImport
   	import 
   end
 
+  def self.dependencies
+    []
+  end
+  
   private
 
   attr_accessor :file 

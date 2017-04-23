@@ -9,6 +9,10 @@ class BatchGenerateCustomerCodes
   	codes
   end
 
+  def self.dependencies
+    [GenerateCustomerCode]
+  end
+
   private
 
   attr_accessor :campaign_customers

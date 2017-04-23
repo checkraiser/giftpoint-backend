@@ -9,11 +9,15 @@ class CleanCampaignCustomers
   	clean 
   end
 
+  def self.dependencies
+    []
+  end
+
   private
 
   attr_accessor :campaign_customers 
 
   def clean
-  	campaign_customers.cleanable.delete_all
+  	campaign_customers.clean
   end
 end

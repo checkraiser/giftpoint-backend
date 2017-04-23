@@ -46,6 +46,11 @@ gem "select2-rails"
 gem "roo"
 gem "roo-xls"
 gem 'kaminari-bootstrap', '~> 3.0.1'
+gem 'rubyzip'
+gem 'axlsx', '2.1.0.pre'
+gem 'axlsx_rails'
+gem 'axlsx_styler'
+
 group :development, :test do
   gem 'seedbank'
   gem 'faker'

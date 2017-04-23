@@ -6,17 +6,19 @@
             <th data-field="code">Code</th>
             <th data-field="sms status">Sms Status</th>
             <th data-field="gift_status">Gift Status</th>
+            <th data-field="code_status">Code Status</th>
         </tr>
     </thead>
     <tbody>
     <% campaign_customers.each do |cc| %>
-        <tr>
+      <tr>
         <td><%= cc.customer.name %></td>
         <td><%= cc.created_at %></td>
         <td><%= cc.code %></td>
         <td><%= cc.sms_status %></td>
         <td><%= cc.gift_status %></td>
-        </tr>
+        <td><%= cc.code_status %></td>
+      </tr>
     <% end %>
     </tbody>
 </table>

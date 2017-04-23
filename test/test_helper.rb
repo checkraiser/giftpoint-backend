@@ -25,6 +25,15 @@ module CampaignHelper
     @campaign_customers = CampaignCustomer.all
   end
 
+  def approved_campaign_customers
+    return @campaign_customers if @campaign_customers
+    ImportCustomer.call(campaign, "customer 1", "01214115322")
+    ImportCustomer.call(campaign, "customer 2", "01214115323")    
+    BatchGenerateCustomerCodes.call CampaignCustomer.all
+    ApproveCampaignCustomers.call(CampaignCustomer.all)
+    @campaign_customers = CampaignCustomer.approved
+  end
+
   def campaign_customer
   	@campaign_customer ||= ImportCustomer.call(campaign, "customer 1", "01214115322").result
   end
@@ -35,6 +44,10 @@ module CampaignHelper
 
   def customers_file
     @customer_file ||= File.open("#{Rails.root}/test/fixtures/files/customers.xls")
+  end
+
+  def customers_sms_file
+    @customers_sms_file ||= File.open("#{Rails.root}/test/fixtures/files/customers_sms.xlsx")
   end
 end
 

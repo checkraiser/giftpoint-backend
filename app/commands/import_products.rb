@@ -9,6 +9,10 @@ class ImportProducts
   	products
   end
 
+  def self.dependencies
+    [CreateProduct]
+  end
+
   private
 
   attr_accessor :records

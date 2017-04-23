@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   	collection do 
   	  post :import
   	  post :generate_code
+      get  :export
+      post :approve_all
+      post :import_sms
   	end
   end
   resources :campaigns, only: [:index, :new, :create, :edit, :update, :show]

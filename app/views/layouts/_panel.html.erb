@@ -1,7 +1,9 @@
+<% if admin? %>
 <div class="well">
 <%= link_to "Import Users", users_path, class: "btn btn-primary" %>
 -->
 <%= link_to "Import Products", products_path, class: "btn btn-primary" %>
 -->
-<%= link_to "New Campaign", campaigns_path, class: "btn btn-primary" %>
+<%= link_to "Campaigns", campaigns_path, class: "btn btn-primary" %>
 </div>
+<% end %>

@@ -12,5 +12,6 @@ module BackendNgan
     # -- all .rb files in that directory are automatically loaded.
     config.exceptions_app = self.routes
     config.autoload_paths << Rails.root.join('app/presenters')
+    config.autoload_paths << Rails.root.join('app/queries')
   end
 end

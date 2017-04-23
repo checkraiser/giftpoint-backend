@@ -3,6 +3,14 @@ module PrependErrors
 
   included do 
   	prepend SimpleCommand
+
+    def self.get_dependencies
+      return if self.dependencies.empty?
+      self.dependencies.each do |dep|
+        p dep
+        dep.get_dependencies
+      end
+    end
   end
 
   def transaction(&block)
@@ -20,10 +28,10 @@ module PrependErrors
 	  	model.errors.messages.each do |k,v|
 	  	  errors.add k, v[0]
 	  	end
-	else
-		model.errors.each do |k, v|
-			errors.add k, v[0]
-		end
-	end
+  	else
+  		model.errors.each do |k, v|
+  			errors.add k, v[0]
+  		end
+  	end
   end
 end

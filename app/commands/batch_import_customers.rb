@@ -10,6 +10,10 @@ class BatchImportCustomers
   	customers
   end
 
+  def self.dependencies
+    [ImportCustomer]
+  end
+
   private
 
   attr_accessor :campaign, :customer_records

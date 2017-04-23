@@ -1,0 +1,41 @@
+<div class="well">
+  <div class="row">
+  	<div class="col-md-3">
+	  <%= form_tag import_customers_path, multipart: true, class: "form-horizontal" do %>
+	  	<%= hidden_field_tag :campaign_id, @campaign.id %>
+	  	<%= file_field_tag :file %>
+	  	<br/>
+	  	<%= submit_tag "Import Customers" %>
+	  <% end %>
+  	</div>
+
+  	<div class="col-md-3">
+	  <%= form_tag generate_code_customers_path, multipart: true do %>
+	  	<%= hidden_field_tag :campaign_id, @campaign.id %>
+	  	<%= submit_tag "Generate Codes" %>
+	  <% end %>
+	  <br/>
+
+	  <%= form_tag approve_all_customers_path do %>
+	  	<%= hidden_field_tag :campaign_id, @campaign.id %>
+	  	<%= submit_tag "Approve all" %>
+	  <% end %>
+
+	  <br/>
+
+	  <%= form_tag export_customers_path(format: :xlsx), method: :get do %>
+	  	<%= hidden_field_tag :campaign_id, @campaign.id %>
+	  	<%= submit_tag "Export" %>
+	  <% end %>
+  	</div>
+
+  	<div class="col-md-3">
+  	  <%= form_tag import_sms_customers_path, multipart: true, class: "form-horizontal" do %>
+	  	<%= hidden_field_tag :campaign_id, @campaign.id %>
+	  	<%= file_field_tag :file %>
+	  	<br/>
+	  	<%= submit_tag "Import Sms" %>
+	  <% end %>
+  	</div>
+  </div>
+</div>

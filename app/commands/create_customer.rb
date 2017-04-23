@@ -10,6 +10,10 @@ class CreateCustomer
   	customer
   end
 
+  def self.dependencies
+    []
+  end
+  
   private
 
   attr_accessor :name, :phone
