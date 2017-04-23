@@ -1,14 +1,13 @@
 sudo: required
-language: ruby
 rvm:
   - 2.4.1
 services:
   - docker
 script:
-  - docker exec backend RAILS_ENV=test bin/rails db:create
-  - docker exec backend RAILS_ENV=test bin/rails db:migrate --trace
-  - docker exec backendbin/rails db:test:prepare
-  - docker exec backend bin/rails test
+  - docker exec backend bash -c 'RAILS_ENV=test bin/rails db:create'
+  - docker exec backend bash -c 'RAILS_ENV=test bin/rails db:migrate --trace'
+  - docker exec backend bash -c 'bin/rails db:test:prepare'
+  - docker exec backend bash -c 'bin/rails test'
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - docker push checkraiser/giftpoint-backend
 before_script:
