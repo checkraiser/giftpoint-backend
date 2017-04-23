@@ -1,6 +1,5 @@
-class CreateProduct
-  include PrependErrors
-
+class CreateProduct < BaseCommand
+  
   def initialize(name, code, price, unit)
     @name = name
   	@code = code

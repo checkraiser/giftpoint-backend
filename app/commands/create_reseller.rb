@@ -1,6 +1,5 @@
-class CreateReseller
-  include PrependErrors
-
+class CreateReseller < BaseCommand
+  
   def initialize(name, email, password)
     @name = name
   	@email = email

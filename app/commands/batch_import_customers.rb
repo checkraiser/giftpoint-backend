@@ -1,6 +1,5 @@
-class BatchImportCustomers
-  include PrependErrors
-
+class BatchImportCustomers < BaseCommand
+  
   def initialize(campaign, customer_records)
   	@campaign = campaign
   	@customer_records = customer_records

@@ -1,6 +1,5 @@
-class CreateAdmin
-  include PrependErrors
-
+class CreateAdmin < BaseCommand
+  
   def initialize(name, email, password)
     @name = name
   	@email = email

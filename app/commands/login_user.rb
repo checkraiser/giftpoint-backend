@@ -1,6 +1,5 @@
-class LoginUser
-  include PrependErrors
-
+class LoginUser < BaseCommand
+  
   def initialize(email, password)
   	@email = email
   	@password = password

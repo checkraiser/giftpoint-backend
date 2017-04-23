@@ -1,6 +1,5 @@
-class BatchGenerateCustomerCodes
-  include PrependErrors
-  
+class BatchGenerateCustomerCodes < BaseCommand
+    
   def initialize(campaign_customers)
   	@campaign_customers = campaign_customers
   end

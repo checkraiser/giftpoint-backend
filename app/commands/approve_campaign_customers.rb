@@ -1,6 +1,4 @@
-class ApproveCampaignCustomers
-  include PrependErrors
-
+class ApproveCampaignCustomers < BaseCommand
   def initialize(campaign_customers)
   	@campaign_customers = campaign_customers
   end

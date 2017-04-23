@@ -1,6 +1,5 @@
-class CreateCampaignCustomer
-  include PrependErrors
-
+class CreateCampaignCustomer < BaseCommand
+  
   def initialize(campaign, customer)
   	@campaign = campaign
   	@customer = customer

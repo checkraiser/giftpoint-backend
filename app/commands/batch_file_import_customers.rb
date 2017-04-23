@@ -1,6 +1,5 @@
-class BatchFileImportCustomers
-  include PrependErrors
-
+class BatchFileImportCustomers < BaseCommand
+  
   def initialize(campaign, file)
   	@campaign = campaign
   	@file = file

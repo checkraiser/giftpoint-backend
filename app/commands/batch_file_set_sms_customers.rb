@@ -1,6 +1,5 @@
-class BatchFileSetSmsCustomers
-  include PrependErrors
-
+class BatchFileSetSmsCustomers < BaseCommand
+  
   def initialize(campaign_customers, file)
   	@campaign_customers = campaign_customers
   	@file = file 

@@ -1,6 +1,5 @@
-class ImportProducts
-  include PrependErrors
-
+class ImportProducts < BaseCommand
+  
   def initialize(records)
     @records = records
   end

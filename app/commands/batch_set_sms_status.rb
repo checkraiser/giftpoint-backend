@@ -1,6 +1,5 @@
-class BatchSetSmsStatus
-  include PrependErrors
-
+class BatchSetSmsStatus < BaseCommand
+  
   def initialize(campaign_customers)
   	@campaign_customers = campaign_customers
   end

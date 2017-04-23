@@ -1,6 +1,5 @@
-class CreateCustomer
-  include PrependErrors
-
+class CreateCustomer < BaseCommand
+  
   def initialize(name, phone)
     @name = name
   	@phone = phone

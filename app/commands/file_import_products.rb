@@ -1,6 +1,5 @@
-class FileImportProducts
-  include PrependErrors
-
+class FileImportProducts < BaseCommand
+  
   def initialize(file)
   	@file = file
   end

@@ -1,6 +1,5 @@
-class BatchRecordsSetSmsCustomers
-  include PrependErrors
-
+class BatchRecordsSetSmsCustomers < BaseCommand
+  
   def initialize(campaign_customers, records)
   	@campaign_customers = campaign_customers
   	@records = records 

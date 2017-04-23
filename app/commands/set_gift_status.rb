@@ -1,6 +1,5 @@
-class SetGiftStatus
-  include PrependErrors
-
+class SetGiftStatus < BaseCommand
+  
   def initialize(campaign_customer)
   	@campaign_customer = campaign_customer
   end

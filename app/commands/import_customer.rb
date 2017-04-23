@@ -1,6 +1,5 @@
-class ImportCustomer
-  include PrependErrors
-
+class ImportCustomer < BaseCommand
+  
   def initialize(campaign, name, phone)
   	@campaign = campaign
   	@name = name

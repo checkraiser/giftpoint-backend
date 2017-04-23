@@ -1,6 +1,5 @@
-class CreateCampaign
-  include PrependErrors
-
+class CreateCampaign < BaseCommand
+  
   def initialize(name, content, start_time, end_time, location, product_count, product)
     @name = name
   	@content = content

@@ -1,6 +1,5 @@
-class CleanCampaignCustomers
-  include PrependErrors
-
+class CleanCampaignCustomers < BaseCommand
+  
   def initialize(campaign_customers)
   	@campaign_customers = campaign_customers
   end
