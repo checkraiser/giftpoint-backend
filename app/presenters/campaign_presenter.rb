@@ -1,3 +1,0 @@
-class CampaignPresenter < ApplicationPresenter
-end
-

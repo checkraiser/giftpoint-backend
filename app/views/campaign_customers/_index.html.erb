@@ -12,7 +12,7 @@
     <tbody>
     <% campaign_customers.each do |cc| %>
       <tr>
-        <td><%= cc.customer.name %></td>
+        <td><%= cc.customer.info %></td>
         <td><%= cc.created_at %></td>
         <td><%= cc.code %></td>
         <td><%= cc.sms_status %></td>

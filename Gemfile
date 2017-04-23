@@ -50,6 +50,8 @@ gem 'rubyzip'
 gem 'axlsx', '2.1.0.pre'
 gem 'axlsx_rails'
 gem 'axlsx_styler'
+gem 'action_args'
+gem 'active_decorator'
 
 group :development, :test do
   gem 'seedbank'
@@ -71,3 +73,4 @@ group :test do
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'apipie-rails'

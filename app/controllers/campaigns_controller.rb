@@ -19,6 +19,7 @@ class CampaignsController < ApplicationController
     end
   end
 
+  api :GET, '/campaigns/:id'
   def show
     @campaign_customers = paginate @campaign.campaign_customers
   end
