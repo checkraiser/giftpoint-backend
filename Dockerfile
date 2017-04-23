@@ -17,9 +17,8 @@ RUN gem install bundler && bundle config --global frozen 1 && \
 COPY Gemfile $APP
 COPY Gemfile.lock $APP
 RUN bundle install --jobs 20 --retry 5
-# compile assets
-RUN bundle exec rake RAILS_ENV=production assets:precompile
 
 COPY . $APP
-
+# compile assets
+RUN bundle exec rake RAILS_ENV=production assets:precompile
 CMD puma -C config/puma.rb
