@@ -1,4 +1,5 @@
 class BatchSetSmsStatus < BaseCommand
+  prepend SimpleCommand
   
   def initialize(campaign_customers)
   	@campaign_customers = campaign_customers

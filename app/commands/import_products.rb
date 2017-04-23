@@ -1,4 +1,5 @@
 class ImportProducts < BaseCommand
+  prepend SimpleCommand
   
   def initialize(records)
     @records = records

@@ -1,4 +1,5 @@
 class BatchFileImportCustomers < BaseCommand
+  prepend SimpleCommand
   
   def initialize(campaign, file)
   	@campaign = campaign

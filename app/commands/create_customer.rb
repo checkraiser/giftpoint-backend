@@ -1,4 +1,5 @@
 class CreateCustomer < BaseCommand
+  prepend SimpleCommand
   
   def initialize(name, phone)
     @name = name

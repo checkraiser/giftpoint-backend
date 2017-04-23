@@ -1,4 +1,5 @@
 class FileImport < BaseCommand
+  prepend SimpleCommand
   
   def initialize(file)
   	@file = file

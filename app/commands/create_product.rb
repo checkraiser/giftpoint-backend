@@ -1,4 +1,5 @@
 class CreateProduct < BaseCommand
+  prepend SimpleCommand
   
   def initialize(name, code, price, unit)
     @name = name

@@ -1,4 +1,5 @@
 class BatchImportCustomers < BaseCommand
+  prepend SimpleCommand
   
   def initialize(campaign, customer_records)
   	@campaign = campaign

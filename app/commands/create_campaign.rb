@@ -1,4 +1,5 @@
 class CreateCampaign < BaseCommand
+  prepend SimpleCommand
   
   def initialize(name, content, start_time, end_time, location, product_count, product)
     @name = name

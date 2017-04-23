@@ -1,4 +1,5 @@
 class ImportCustomer < BaseCommand
+  prepend SimpleCommand
   
   def initialize(campaign, name, phone)
   	@campaign = campaign

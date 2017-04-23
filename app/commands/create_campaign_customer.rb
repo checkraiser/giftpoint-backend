@@ -1,4 +1,5 @@
 class CreateCampaignCustomer < BaseCommand
+  prepend SimpleCommand
   
   def initialize(campaign, customer)
   	@campaign = campaign

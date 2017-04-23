@@ -1,4 +1,5 @@
 class CreateAdmin < BaseCommand
+  prepend SimpleCommand
   
   def initialize(name, email, password)
     @name = name

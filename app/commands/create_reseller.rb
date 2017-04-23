@@ -1,4 +1,5 @@
 class CreateReseller < BaseCommand
+  prepend SimpleCommand
   
   def initialize(name, email, password)
     @name = name

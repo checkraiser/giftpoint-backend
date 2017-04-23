@@ -1,4 +1,5 @@
 class BatchFileSetSmsCustomers < BaseCommand
+  prepend SimpleCommand
   
   def initialize(campaign_customers, file)
   	@campaign_customers = campaign_customers

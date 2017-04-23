@@ -1,5 +1,4 @@
 class BaseCommand
-  prepend SimpleCommand
 
   def self.get_dependencies
     return if self.dependencies.empty?

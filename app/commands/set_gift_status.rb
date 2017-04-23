@@ -1,4 +1,5 @@
 class SetGiftStatus < BaseCommand
+  prepend SimpleCommand
   
   def initialize(campaign_customer)
   	@campaign_customer = campaign_customer
