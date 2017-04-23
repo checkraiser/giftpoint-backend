@@ -10,7 +10,7 @@ script:
   - docker exec backend bash -c 'bin/rails test'
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - docker push checkraiser/giftpoint-backend
-before_script:
+before_install:
   - cp config/database.yml.travis config/database.yml
   - docker pull postgres:9.6
   - docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
