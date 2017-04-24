@@ -1,0 +1,23 @@
+<table class="table" data-toggle="table">
+    <thead>
+        <tr>
+            <th data-field="id">ID</th>
+            <th data-field="name">Name</th>
+            <th data-field="email">Email</th>
+            <th data-field="phone">Phone</th>
+            <th data-field="end_time">Location</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% resellers.each do |reseller| %>
+        <tr>
+        <td><%= reseller.id %> </td>
+        <td><%= reseller.name %></td>
+        <td><%= reseller.email %></td>
+        <td><%= reseller.phone %></td>
+        <td><%= reseller.location %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+<%= paginate resellers %>

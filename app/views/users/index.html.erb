@@ -1,2 +1,7 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<%= form_tag import_resellers_users_path, multipart: true, class: "form-horizontal" do %>
+	<%= file_field_tag :file %>
+	<br/>
+	<%= submit_tag "Import Resellers" %>
+<% end %>
+<hr/>
+<%= render partial: "users/resellers", locals: { resellers: @resellers } %>

@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   	  post :import
   	end
   end
-  resources :users, only: [:index, :new, :create]
+  resources :users, only: [:index, :new, :create] do 
+    collection do 
+      post :import_resellers
+    end
+  end
   resources :customers, only: [:index] do 
   	collection do 
   	  post :import

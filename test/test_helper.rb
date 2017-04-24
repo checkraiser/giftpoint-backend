@@ -46,6 +46,10 @@ module CampaignHelper
     @customer_file ||= File.open("#{Rails.root}/test/fixtures/files/customers.xls")
   end
 
+  def resellers_file
+    @resellers_file ||= File.open("#{Rails.root}/test/fixtures/files/resellers.xlsx")
+  end
+
   def customers_sms_file
     @customers_sms_file ||= File.open("#{Rails.root}/test/fixtures/files/customers_sms.xlsx")
   end
