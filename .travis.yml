@@ -1,18 +1,27 @@
 sudo: required
 rvm:
-  - 2.4.1
+- 2.4.1
 services:
-  - docker
+- docker
+before_script:
+- echo -e "Host $IP_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 script:
-  - docker exec backend bash -c 'RAILS_ENV=test bin/rails db:create'
-  - docker exec backend bash -c 'RAILS_ENV=test bin/rails db:migrate --trace'
-  - docker exec backend bash -c 'bin/rails db:test:prepare'
-  - docker exec backend bash -c 'bin/rails test'
-  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker push checkraiser/giftpoint-backend
+- docker exec backend bash -c 'RAILS_ENV=test bin/rails db:create'
+- docker exec backend bash -c 'RAILS_ENV=test bin/rails db:migrate --trace'
+- docker exec backend bash -c 'bin/rails db:test:prepare'
+- docker exec backend bash -c 'bin/rails test'
+- docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+- docker push checkraiser/giftpoint-backend
 before_install:
-  - cp config/database.yml.travis config/database.yml
-  - docker pull postgres:9.6
-  - docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
-  - docker build -t checkraiser/giftpoint-backend . 
-  - docker run --name backend --link some-postgres:postgres -e RAILS_ENV=test -d checkraiser/giftpoint-backend
+- openssl aes-256-cbc -K $encrypted_3f4f0f29d381_key -iv $encrypted_3f4f0f29d381_iv
+  -in gipapp_key.enc -out gipapp_key -d
+- rm gipapp_key.enc 
+- chmod 600 gipapp_key
+- mv gipapp_key ~/.ssh/id_rsa
+- cp config/database.yml.travis config/database.yml
+- docker pull postgres:9.6
+- docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+- docker build -t checkraiser/giftpoint-backend .
+- docker run --name backend --link some-postgres:postgres -e RAILS_ENV=test -d checkraiser/giftpoint-backend
+after_success:
+- ssh checkraiser@"$IP_HOST" 'ci/deploy.sh'
