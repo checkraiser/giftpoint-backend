@@ -6,7 +6,7 @@ class CleanCampaignCustomers < BaseCommand
   end
 
   def call
-  	clean 
+  	clean_campaign_customers 
   end
 
   def self.dependencies
