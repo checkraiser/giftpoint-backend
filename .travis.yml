@@ -1,6 +1,4 @@
 sudo: required
-rvm:
-- 2.4.1
 services:
 - docker
 before_script:
@@ -24,4 +22,5 @@ before_install:
 - docker build -t checkraiser/giftpoint-backend .
 - docker run --name backend --link some-postgres:postgres -e RAILS_ENV=test -d checkraiser/giftpoint-backend
 after_success:
-- ssh checkraiser@"$IP_HOST" '"$DEPLOY_DIR"/deploy.sh'
+- scp ci/deploy.sh $USERNAME@$IP_HOST:$HOME/deploy.sh
+- ssh $USERNAME@$IP_HOST '$HOME/deploy.sh'
