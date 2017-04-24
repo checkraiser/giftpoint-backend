@@ -26,5 +26,7 @@ class BatchSetSmsStatus < BaseCommand
   		end
   	end
   	return result
+  rescue => e 
+    errors.add :batch_set_sms_status, e.message
   end
 end

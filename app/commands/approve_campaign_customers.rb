@@ -6,7 +6,7 @@ class ApproveCampaignCustomers < BaseCommand
   end
 
   def call
-  	approve
+  	approve_campaign_customers
   end
 
   def self.dependencies
@@ -17,7 +17,7 @@ class ApproveCampaignCustomers < BaseCommand
 
   attr_accessor :campaign_customers 
 
-  def approve
+  def approve_campaign_customers
   	campaign_customers.approve_all
   rescue => e 
   	errors.add :approve_campaign_customers, e.message

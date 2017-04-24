@@ -17,7 +17,9 @@ class CleanCampaignCustomers < BaseCommand
 
   attr_accessor :campaign_customers 
 
-  def clean
+  def clean_campaign_customers
   	campaign_customers.clean
+  rescue => e 
+    errors.add :clean_campaign_customers, e.message
   end
 end

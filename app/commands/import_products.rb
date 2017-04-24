@@ -6,7 +6,7 @@ class ImportProducts < BaseCommand
   end
 
   def call
-  	products
+  	import_products
   end
 
   def self.dependencies
@@ -17,7 +17,7 @@ class ImportProducts < BaseCommand
 
   attr_accessor :records
 
-  def products
+  def import_products
     return [] if records.empty?
     result = []
     records.each do |record|
@@ -31,5 +31,7 @@ class ImportProducts < BaseCommand
       end
     end
   	return result
+  rescue => e 
+    errors.add :import_products, e.message
   end
 end

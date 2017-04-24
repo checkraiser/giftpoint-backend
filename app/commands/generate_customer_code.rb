@@ -6,14 +6,14 @@ class GenerateCustomerCode < BaseCommand
   end
 
   def call
-  	code
+  	generate_customer_code
   end
 
   private
 
   attr_accessor :campaign_customer
 
-  def code
+  def generate_customer_code
   	if !campaign_customer.campaign || !campaign_customer.customer 
   	  return ""
   	else
@@ -23,5 +23,7 @@ class GenerateCustomerCode < BaseCommand
   	  return campaign_customer if campaign_customer.save
   	  prepend_errors(campaign_customer)
   	end
+  rescue => e 
+    errors.add :generate_customer_code, e.message
   end
 end

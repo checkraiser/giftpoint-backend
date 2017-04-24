@@ -7,7 +7,7 @@ class BatchFileImportCustomers < BaseCommand
   end
 
   def call
-  	import
+  	batch_file_import_customers
   end
 
   def self.dependencies
@@ -17,7 +17,7 @@ class BatchFileImportCustomers < BaseCommand
 
   attr_accessor :campaign, :file 
 
-  def import
+  def batch_file_import_customers
   	command = FileImport.call(file)
   	if command.success?
       CleanCampaignCustomers.call(campaign.campaign_customers)
@@ -27,5 +27,7 @@ class BatchFileImportCustomers < BaseCommand
   	else
   	   prepend_errors command
   	end
+  rescue => e 
+    errors.add :batch_file_import_customers, e.message
   end
 end

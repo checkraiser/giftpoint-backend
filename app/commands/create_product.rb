@@ -9,7 +9,7 @@ class CreateProduct < BaseCommand
   end
 
   def call
-  	product
+  	create_product
   end
 
   def self.dependencies
@@ -20,7 +20,7 @@ class CreateProduct < BaseCommand
 
   attr_accessor :name, :code, :price, :unit
 
-  def product
+  def create_product
   	product = Product.find_by(code: code)
     return product if product
     product = Product.new name: name,
@@ -30,5 +30,7 @@ class CreateProduct < BaseCommand
     return product if product.save
   	prepend_errors(product)
   	nil
+  rescue => e 
+    errors.add :create_product, e.message
   end
 end

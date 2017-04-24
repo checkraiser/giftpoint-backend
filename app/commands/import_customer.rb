@@ -8,7 +8,7 @@ class ImportCustomer < BaseCommand
   end
 
   def call
-  	customer
+  	import_customer
   end	
 
   def self.dependencies
@@ -19,7 +19,7 @@ class ImportCustomer < BaseCommand
 
   attr_accessor :campaign, :name, :phone
 
-  def customer
+  def import_customer
     transaction do 
     	customer = CreateCustomer.call(name, phone)
     	if customer.success?
@@ -31,5 +31,7 @@ class ImportCustomer < BaseCommand
         prepend_errors(customer)    
       end
     end
+  rescue => e 
+    errors.add :import_customer, e.message
   end
 end

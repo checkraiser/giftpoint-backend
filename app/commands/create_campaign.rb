@@ -12,7 +12,7 @@ class CreateCampaign < BaseCommand
   end
 
   def call
-  	campaign
+  	create_campaign
   end
 
   def self.dependencies
@@ -23,7 +23,7 @@ class CreateCampaign < BaseCommand
 
   attr_accessor :name, :content, :start_time, :end_time, :location, :product_count, :product
 
-  def campaign
+  def create_campaign
   	campaign = Campaign.new name: name,
                             content: content,
                             start_time: start_time,
@@ -35,5 +35,7 @@ class CreateCampaign < BaseCommand
     return campaign if campaign.save
   	prepend_errors(campaign)
     nil
+  rescue => e 
+    errors.add :create_campaign, e.message
   end
 end

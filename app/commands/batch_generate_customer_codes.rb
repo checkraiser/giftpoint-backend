@@ -6,7 +6,7 @@ class BatchGenerateCustomerCodes < BaseCommand
   end
 
   def call
-  	codes
+  	batch_generate_customer_codes
   end
 
   def self.dependencies
@@ -17,7 +17,7 @@ class BatchGenerateCustomerCodes < BaseCommand
 
   attr_accessor :campaign_customers
 
-  def codes
+  def batch_generate_customer_codes
   	result = []
   	campaign_customers.generatable.each do |cc|
   	  command = GenerateCustomerCode.call(cc)
@@ -26,5 +26,7 @@ class BatchGenerateCustomerCodes < BaseCommand
   	  end
   	end
   	return result
-  end	
+  rescue => e 
+    errors.add :batch_generate_customer_codes, e.message
+  end
 end

@@ -6,14 +6,14 @@ class BatchFileImportResellers < BaseCommand
   end
 
   def call
-  	import 
+  	batch_file_import_resellers 
   end
 
   private
 
   attr_accessor :resellers_file
 
-  def import
+  def batch_file_import_resellers
   	if resellers_file.nil?
   	  errors.add :batch_file_import_resellers, "File is empty"
   	  return []

@@ -10,7 +10,7 @@ class CreateReseller < BaseCommand
   end
 
   def call
-  	user
+  	create_reseller
   end
 
   def self.dependencies
@@ -21,7 +21,7 @@ class CreateReseller < BaseCommand
 
   attr_accessor :name, :email, :password, :phone, :location
 
-  def user
+  def create_reseller
   	user = User.reseller.find_by_email(email)
   	return user if user
     user = User.new name: name,

@@ -6,14 +6,14 @@ class BatchImportResellers < BaseCommand
   end
 
   def call
-  	import 
+  	batch_import_resellers 
   end
 
   private
 
   attr_accessor :records
 
-  def import
+  def batch_import_resellers
   	return [] if records.empty?
   	result = []
   	records.each do |record|
@@ -45,5 +45,7 @@ class BatchImportResellers < BaseCommand
   	record[:password].present? &&
   	record[:phone].present? &&
   	record[:location].present?
+  rescue => e 
+    errors.add :batch_import_resellers_valid, e.message
   end
 end

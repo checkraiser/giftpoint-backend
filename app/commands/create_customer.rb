@@ -7,7 +7,7 @@ class CreateCustomer < BaseCommand
   end
 
   def call
-  	customer
+  	create_customer
   end
 
   def self.dependencies
@@ -18,7 +18,7 @@ class CreateCustomer < BaseCommand
 
   attr_accessor :name, :phone
 
-  def customer
+  def create_customer
   	customer = Customer.find_by(phone: phone)
     return customer if customer
     customer = Customer.new name: name,
@@ -26,5 +26,7 @@ class CreateCustomer < BaseCommand
     return customer if customer.save
   	prepend_errors(customer)
   	nil
+  rescue => e 
+    errors.add :create_customer, e.message
   end
 end

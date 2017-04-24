@@ -18,5 +18,7 @@ class SetGiftStatus < BaseCommand
   	campaign_customer.assign_attributes gift_status: true
   	return  campaign_customer if campaign_customer.save
   	prepend_errors(campaign_customer)
+  rescue => e 
+    errors.add :set_gift_status, e.message
   end
 end

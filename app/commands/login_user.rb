@@ -7,18 +7,20 @@ class LoginUser < BaseCommand
   end
 
   def call
-  	user
+  	login_user
   end
 
   private
 
   attr_accessor :email, :password
 
-  def user
+  def login_user
   	user = User.find_by_email(email)
   	return user if user && user.authenticate(password)
 
   	errors.add :user_authentication, 'invalid credentials'
   	nil
+  rescue => e 
+    errors.add :login_user, e.message
   end
 end

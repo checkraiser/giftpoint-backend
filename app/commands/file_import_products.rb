@@ -6,7 +6,7 @@ class FileImportProducts < BaseCommand
   end
 
   def call
-  	import 
+  	file_import_products 
   end
 
   def self.dependencies
@@ -17,7 +17,7 @@ class FileImportProducts < BaseCommand
 
   attr_accessor :file 
 
-  def import
+  def file_import_products
   	command = FileImport.call(file)
   	if command.success?
   		cmd = ImportProducts.call(command.result)
@@ -26,5 +26,7 @@ class FileImportProducts < BaseCommand
   	else
   	   prepend_errors command
   	end
+  rescue => e 
+    errors.add :file_import_products, e.message
   end
 end

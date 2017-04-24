@@ -7,14 +7,14 @@ class BatchFileSetSmsCustomers < BaseCommand
   end
 
   def call
-  	file_set_sms
+  	batch_file_set_sms_customers
   end
 
   private
 
   attr_accessor :file, :campaign_customers
 	
-  def file_set_sms
+  def batch_file_set_sms_customers
   	command = FileImport.call(file)
   	if command.success?
   		cmd = BatchRecordsSetSmsCustomers.call(campaign_customers, command.result)
@@ -23,5 +23,7 @@ class BatchFileSetSmsCustomers < BaseCommand
   	else
   		prepend_errors command.errors
   	end
-  end  
+  rescue => e 
+    errors.add :batch_file_set_sms_customers, e.message
+  end
 end

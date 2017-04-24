@@ -6,7 +6,7 @@ class FileImport < BaseCommand
   end
 
   def call
-  	import 
+  	file_import 
   end
 
   def self.dependencies
@@ -17,7 +17,7 @@ class FileImport < BaseCommand
 
   attr_accessor :file 
 
-  def import
+  def file_import
   	result = []
   	spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
@@ -27,10 +27,12 @@ class FileImport < BaseCommand
     end
   	return result
   rescue => e 
-  	errors.add :file_import_customers, e.message
+  	errors.add :file_import, e.message
   end
 
   def open_spreadsheet(file)
   	Roo::Spreadsheet.open(file.path, extension: :xlsx)
+  rescue => e 
+    errors.add :file_import_open_spreadsheet, e.message
   end
 end

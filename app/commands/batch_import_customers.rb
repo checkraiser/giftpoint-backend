@@ -7,7 +7,7 @@ class BatchImportCustomers < BaseCommand
   end
 
   def call
-  	customers
+  	batch_import_customers
   end
 
   def self.dependencies
@@ -18,7 +18,7 @@ class BatchImportCustomers < BaseCommand
 
   attr_accessor :campaign, :customer_records
 
-  def customers
+  def batch_import_customers
   	result = []
   	return [] if customer_records.empty?
   	customer_records.each do |record|
@@ -33,5 +33,7 @@ class BatchImportCustomers < BaseCommand
   	  end
   	end
   	return result
+  rescue => e 
+    errors.add :batch_import_customers, e.message
   end
 end

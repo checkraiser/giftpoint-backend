@@ -8,7 +8,7 @@ class CreateAdmin < BaseCommand
   end
 
   def call
-  	user
+  	create_admin
   end
 
   def self.dependencies
@@ -19,7 +19,7 @@ class CreateAdmin < BaseCommand
 
   attr_accessor :name, :email, :password
 
-  def user
+  def create_admin
   	user = User.admin.find_by_email(email)
     if user
   	  errors.add :create_admin, "Admin exists" 
@@ -33,5 +33,7 @@ class CreateAdmin < BaseCommand
     return user if user.save
     prepend_errors(user)
   	nil
+  rescue => e 
+    errors.add :create_admin, e.message
   end
 end
