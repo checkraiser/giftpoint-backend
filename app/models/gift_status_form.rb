@@ -13,7 +13,8 @@ class GiftStatusForm < BaseForm
   	  if command.success?
   	  	return command.result
   	  else
-  	  	p command.errors
+  	  	append_errors command
+        nil
   	  end
   	end
   end
