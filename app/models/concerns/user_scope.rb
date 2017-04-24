@@ -10,6 +10,10 @@ module UserScope
   	level == 1
   end
 
+  def reseller?
+    level == 2
+  end
+
   def acts_as_reseller?
   	admin? || level == 2
   end

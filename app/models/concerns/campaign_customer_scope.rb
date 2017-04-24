@@ -11,6 +11,20 @@ module CampaignCustomerScope
   	scope :cleanable,   -> { unapproved }
     scope :exportable,  -> { approved }
     scope :smsable,     -> { approved }
+    scope :giftable,    -> { approved.not.gifted }
+    scope :gifted,      -> { where(gift_status: true) }
+  end
+
+  def gifted?
+    gift_status == true
+  end
+
+  def giftable?
+    smsed? && !gifted?
+  end
+
+  def smsed?
+    sms_status == true
   end
 
   class_methods do 

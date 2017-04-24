@@ -25,7 +25,7 @@ class CustomersController < ApplicationController
   end
 
   def export
-    @campaign_customers = @campaign.campaign_customers.exportable
+    @campaign_customers = @campaign.campaign_customers.exportable.includes(:customer)
     respond_to do |format|
       format.xlsx
     end

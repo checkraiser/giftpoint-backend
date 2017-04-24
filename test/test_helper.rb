@@ -49,6 +49,10 @@ module CampaignHelper
   def customers_sms_file
     @customers_sms_file ||= File.open("#{Rails.root}/test/fixtures/files/customers_sms.xlsx")
   end
+
+  def approved_campaign_customer
+    @campaign_customer ||= approved_campaign_customers.first
+  end
 end
 
 class ActiveSupport::TestCase

@@ -1,7 +1,7 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: "Buttons") do |sheet|
   @campaign_customers.each do |cc|
-    sheet.add_row [cc.customer.name, cc.code]   
+    sheet.add_row [cc.customer.name, cc.code, cc.customer.phone]   
   end
   sheet.column_widths 5, 20, 20, 20
 end

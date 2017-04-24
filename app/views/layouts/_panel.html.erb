@@ -7,3 +7,6 @@
 <%= link_to "Campaigns", campaigns_path, class: "btn btn-primary" %>
 </div>
 <% end %>
+<% if reseller? %>
+<%= link_to "Check Code", promotion_path, class: "btn btn-primary" %>
+<% end %>
