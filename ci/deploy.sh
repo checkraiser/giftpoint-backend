@@ -1,4 +1,5 @@
 #!/bin/bash
+. $HOME/.bashrc
 sudo docker pull checkraiser/giftpoint-backend
 sudo docker stop backend
 sudo docker rm backend 

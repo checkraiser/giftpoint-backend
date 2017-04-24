@@ -1,6 +1,7 @@
 sudo: required
 services:
 - docker
+rvm: true
 before_install:
 - openssl aes-256-cbc -K $encrypted_3f4f0f29d381_key -iv $encrypted_3f4f0f29d381_iv
   -in gipapp_key.enc -out gipapp_key -d
@@ -24,4 +25,4 @@ script:
 - docker push checkraiser/giftpoint-backend
 after_success:
 - scp ci/deploy.sh $USERNAME@$IP_HOST:$HOME/deploy.sh
-- ssh $USERNAME@$IP_HOST '. $HOME/.bashrc && $HOME/deploy.sh'
+- ssh $USERNAME@$IP_HOST '$HOME/deploy.sh'
