@@ -28,4 +28,4 @@ script:
 - docker push checkraiser/giftpoint-backend
 after_success:
 - scp ci/deploy.sh $USERNAME@$IP_HOST:$DEPLOY_DIR/deploy.sh
-- ssh $USERNAME@$IP_HOST '$DEPLOY_DIR/deploy.sh'
+- ssh $USERNAME@$IP_HOST 'bash -ic $DEPLOY_DIR/deploy.sh'
