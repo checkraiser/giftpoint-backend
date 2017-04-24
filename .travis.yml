@@ -27,5 +27,5 @@ script:
 - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 - docker push checkraiser/giftpoint-backend
 after_success:
-- scp ci/deploy.sh $USERNAME@$IP_HOST:$HOME/deploy.sh
-- ssh $USERNAME@$IP_HOST '$HOME/deploy.sh'
+- scp ci/deploy.sh $USERNAME@$IP_HOST:$DEPLOY_DIR/deploy.sh
+- ssh $USERNAME@$IP_HOST '$DEPLOY_DIR/deploy.sh'
