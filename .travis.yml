@@ -1,7 +1,7 @@
 sudo: required
 services:
 - docker
-rvm: true
+rvm: false
 before_install:
 - openssl aes-256-cbc -K $encrypted_3f4f0f29d381_key -iv $encrypted_3f4f0f29d381_iv
   -in gipapp_key.enc -out gipapp_key -d
