@@ -1,9 +1,17 @@
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
-    	<%= simple_form_for(@gift_status_form, url: promotion_url, html: { class: 'form-horizontal' }) do |f| %>
+    	<%= simple_form_for(@gift_status_form, url: find_promotion_url, html: { class: 'form-horizontal' }) do |f| %>
 		  <%= f.input :phone %>
 		  <%= f.input :code %>
-		  <%= f.submit :Submit, class: "btn btn-primary" %>
+		  <%= f.submit :Find, class: "btn btn-primary" %>
 		<% end %>
     </div>
 </div>
+
+<% if @campaign_customer %>
+<%= render partial: "campaign_customers/show", locals: { campaign_customer: @campaign_customer } %>
+<%= simple_form_for(@gift_status_form, url: promotion_url, html: { class: 'form-horizontal' }) do |f| %>
+  <%= f.input :campaign_customer_id, as: :hidden, input_html: { value: "#{@campaign_customer.id}" } %>
+  <%= f.submit :Approve, class: "btn btn-primary" %>
+<% end %>
+<% end %>

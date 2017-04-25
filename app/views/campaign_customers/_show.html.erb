@@ -1,0 +1,22 @@
+<table class="table" data-toggle="table">
+    <thead>
+        <tr>
+            <th data-field="customer">Customer</th>
+            <th data-field="created_at">Created at</th>
+            <th data-field="code">Code</th>
+            <th data-field="sms status">Sms Status</th>
+            <th data-field="gift_status">Gift Status</th>
+            <th data-field="code_status">Code Status</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= campaign_customer.customer.info %></td>
+        <td><%= campaign_customer.created_at %></td>
+        <td><%= campaign_customer.code %></td>
+        <td><%= campaign_customer.sms_status %></td>
+        <td><%= campaign_customer.gift_status %></td>
+        <td><%= campaign_customer.code_status %></td>
+      </tr>
+    </tbody>
+</table>

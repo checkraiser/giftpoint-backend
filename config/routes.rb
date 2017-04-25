@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :gift_statuses, only: [:index, :create]
+  resources :gift_statuses, only: [:index, :create, :find]
   get '/promotion', to: 'gift_statuses#index'
   post '/promotion', to: 'gift_statuses#create'
+  post '/find_promotion', to: 'gift_statuses#find'
   resources :products, only: [:index, :new, :create] do 
   	collection do 
   	  post :import
