@@ -29,4 +29,18 @@ class BaseCommand
   		end
   	end
   end
+
+  def convert x
+    Float(x)
+    i, f = x.to_i, x.to_f
+    i == f ? i : f
+  rescue ArgumentError
+    x
+  end
+
+  def prepend_zero(x)
+    "0" + x.to_s
+  rescue => e 
+    x
+  end
 end

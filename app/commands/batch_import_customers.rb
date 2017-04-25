@@ -23,7 +23,7 @@ class BatchImportCustomers < BaseCommand
   	return [] if customer_records.empty?
   	customer_records.each do |record|
   	  name = record[:name].to_s
-  	  phone = record[:phone].to_s
+  	  phone = prepend_zero(convert(record[:phone].to_s))
       gen_count = record[:gen_count].to_i
   	  if gen_count > 0
         gen_count.times do 
@@ -35,5 +35,5 @@ class BatchImportCustomers < BaseCommand
   	return result
   rescue => e 
     errors.add :batch_import_customers, e.message
-  end
+  end  
 end

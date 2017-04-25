@@ -22,7 +22,7 @@ class BatchImportResellers < BaseCommand
 	  	  record[:name].to_s, 
 	  	  record[:email].to_s, 
 	  	  record[:password].to_s, 
-	  	  record[:phone].to_s,
+	  	  prepend_zero(convert(record[:phone].to_s)),
 	  	  record[:location].to_s
 	  	)
 	  	if command.success?
