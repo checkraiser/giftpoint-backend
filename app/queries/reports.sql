@@ -19,7 +19,7 @@ Order by c.start_time;
 -------------------------
 --Danh sach nong dan tham gia chien dich
 --id la chien dich tham so can truyen vao
-select customers.phone,customers.name,p.name as product_name,c.product_count
+select customers.phone as customer_phone, customers.name as customer_name, p.name as product_name,c.product_count as product_count
 From campaigns c
 inner join products p on c.product_id=p.id
 inner join campaign_customers on c.id=campaign_customers.campaign_id
