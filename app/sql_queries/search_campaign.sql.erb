@@ -1,0 +1,13 @@
+select c.id,c.name as name,c.content as content,c.start_time as start_time,c.end_time as end_time,c.location as city,c.product_count as product_count,p.name as product_name
+From campaigns c
+inner join products p on c.product_id=p.id
+<% if @date.present? %>
+Where <%= quote @date %> between date_trunc('day',c.start_time) and date_trunc('day',c.end_time)
+<% end %>
+<% if @city.present? %>
+and c.location like <%= quote @city %>
+<% end %>
+<% if @product_name.present? %>
+and p.name like  <%= quote @product_name %>
+<% end %>
+Order by c.start_time;

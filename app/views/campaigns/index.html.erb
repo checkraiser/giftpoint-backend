@@ -1,4 +1,7 @@
 <%= render "campaigns/common" %>
+<%= render "campaigns/search" %>
+<hr/><hr/>
+<h1>Campaigns</h1>
 <table class="table" data-toggle="table">
     <thead>
         <tr>
@@ -8,19 +11,21 @@
             <th data-field="start_time">Start Time</th>
             <th data-field="end_time">End Time</th>
             <th data-field="location">Location</th>
-            <th data-field="product_count">Count</th>
+            <th data-field="product_count">Promotion</th>
+            <th data-field="product_name">Product Name</th>
         </tr>
     </thead>
     <tbody>
     <% @resources.each do |campaign| %>
         <tr>
-        <td><%= link_to campaign.name, campaign_path(campaign) %> </td>
-        <td><%= campaign.name %></td>
-        <td><%= campaign.content %></td>
-        <td><%= campaign.start_time %></td>
-        <td><%= campaign.end_time %></td>
-        <td><%= campaign.location %></td>
-        <td><%= campaign.product_count %></td>
+        <td><%= link_to campaign[:name], campaign_path(campaign[:id]) %> </td>
+        <td><%= campaign[:name] %></td>
+        <td><%= campaign[:content] %></td>
+        <td><%= campaign[:start_time] %></td>
+        <td><%= campaign[:end_time] %></td>
+        <td><%= campaign[:location] %></td>
+        <td><%= campaign[:product_count] %></td>
+        <td><%= campaign[:product_name] %></td>
         </tr>
     <% end %>
     </tbody>

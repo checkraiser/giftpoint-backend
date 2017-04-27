@@ -1,9 +1,11 @@
 class CampaignsController < ApplicationController
   before_action :require_admin
   before_action :require_campaign, only: [:show, :edit, :update]  
+  before_action :require_cities, only: [:index]
 
-  def index
-    @resources = paginate(Campaign)
+  def index    
+    query = CampaignSearchQuery.new(params[:date], params[:city], params[:product_name])
+    @resources = paginate(query.render)
   end
 
   def new
@@ -47,5 +49,9 @@ class CampaignsController < ApplicationController
   def require_campaign
     @campaign ||= Campaign.find_by_id(params[:id])
     redirect_to root_path and return unless @campaign
+  end
+
+  def require_cities
+    @cities ||= Campaign.pluck(:location)
   end
 end

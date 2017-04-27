@@ -58,7 +58,8 @@ CREATE TABLE campaign_customers (
     updated_at timestamp without time zone NOT NULL,
     code character varying,
     sms_status boolean DEFAULT false NOT NULL,
-    gift_status boolean DEFAULT false NOT NULL
+    gift_status boolean DEFAULT false NOT NULL,
+    code_status boolean DEFAULT false NOT NULL
 );
 
 
@@ -94,7 +95,8 @@ CREATE TABLE campaigns (
     location character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    count integer DEFAULT 0 NOT NULL
+    product_count integer DEFAULT 0 NOT NULL,
+    product_id integer
 );
 
 
@@ -150,6 +152,40 @@ ALTER SEQUENCE customers_id_seq OWNED BY customers.id;
 
 
 --
+-- Name: products; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE products (
+    id integer NOT NULL,
+    name character varying NOT NULL,
+    code character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    price double precision DEFAULT 0.0 NOT NULL,
+    unit character varying NOT NULL
+);
+
+
+--
+-- Name: products_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE products_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: products_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE products_id_seq OWNED BY products.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -169,7 +205,9 @@ CREATE TABLE users (
     password_digest character varying NOT NULL,
     level integer DEFAULT 2 NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    phone character varying,
+    location character varying
 );
 
 
@@ -214,6 +252,13 @@ ALTER TABLE ONLY customers ALTER COLUMN id SET DEFAULT nextval('customers_id_seq
 
 
 --
+-- Name: products id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY products ALTER COLUMN id SET DEFAULT nextval('products_id_seq'::regclass);
+
+
+--
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -253,6 +298,14 @@ ALTER TABLE ONLY customers
 
 
 --
+-- Name: products products_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY products
+    ADD CONSTRAINT products_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -283,10 +336,24 @@ CREATE INDEX index_campaign_customers_on_customer_id ON campaign_customers USING
 
 
 --
+-- Name: index_campaigns_on_product_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaigns_on_product_id ON campaigns USING btree (product_id);
+
+
+--
 -- Name: index_customers_on_phone; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_customers_on_phone ON customers USING btree (phone);
+
+
+--
+-- Name: index_products_on_code; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_products_on_code ON products USING btree (code);
 
 
 --
@@ -295,6 +362,14 @@ CREATE INDEX index_customers_on_phone ON customers USING btree (phone);
 
 ALTER TABLE ONLY campaign_customers
     ADD CONSTRAINT fk_rails_4142970986 FOREIGN KEY (campaign_id) REFERENCES campaigns(id);
+
+
+--
+-- Name: campaigns fk_rails_6a44f1a856; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY campaigns
+    ADD CONSTRAINT fk_rails_6a44f1a856 FOREIGN KEY (product_id) REFERENCES products(id);
 
 
 --
@@ -317,6 +392,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170422073222'),
 ('20170422083255'),
 ('20170422093428'),
-('20170422104850');
+('20170422104850'),
+('20170422171010'),
+('20170422173951'),
+('20170422174833'),
+('20170423071702'),
+('20170424140605');
 
 

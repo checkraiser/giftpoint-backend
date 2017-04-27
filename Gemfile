@@ -52,6 +52,7 @@ gem 'axlsx_rails'
 gem 'axlsx_styler'
 gem 'action_args'
 gem 'active_decorator'
+gem 'sql_query'
 
 group :development, :test do
   gem 'seedbank'
