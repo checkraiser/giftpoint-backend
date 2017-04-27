@@ -4,10 +4,10 @@
 	<%= select_tag :city, options_for_select(@cities, selected: params[:city]), :include_blank => 'All Cities', class: "dropdown" %>
 	</div>
 	<div class="col-md-3">
-		<input type="text" data-provide='datepicker' name="date", placeholder="Choose a date", value = <%= params[:date].present? ? params[:date] : Date.current.strftime("%m/%d/%Y") %> >
+		<input type="text" data-provide='datepicker' class='form-control' name="date" placeholder="Choose a date" value = <%= params[:date].present? ? params[:date] : Date.current.strftime("%m/%d/%Y") %> >
 	</div>
 	<div class="col-md-3">
-		<input type="text" name="product_name", placeholder="Product name", value = <%= params[:product_name].present? ? params[:product_name] : "" %> >
+		<input type="text" name="product_name" class='form-control' placeholder="Product name" value = <%= params[:product_name].present? ? params[:product_name] : "" %> >
 	</div>
 	<div class="col-md-3">
     	<%= submit_tag "Search", :name => nil, class: "btn btn-primary" %>
