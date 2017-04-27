@@ -2,7 +2,7 @@
 <%= render "campaigns/search" %>
 <hr/><hr/>
 <h1>Campaigns</h1>
-<table class="table" data-toggle="table">
+<table class="table table-bordered table-condensed table-striped" data-toggle="table">
     <thead>
         <tr>
             <th data-field="id">ID</th>
@@ -13,6 +13,7 @@
             <th data-field="location">City</th>
             <th data-field="product_count">Promotion</th>
             <th data-field="product_name">Product Name</th>
+            <th data-field="edit">Edit</th>
         </tr>
     </thead>
     <tbody>
@@ -26,8 +27,14 @@
         <td><%= campaign[:city] %></td>
         <td><%= campaign[:product_count] %></td>
         <td><%= campaign[:product_name] %></td>
+        <td><i class="fa fa-pencil-square-o" aria-hidden="true" data-toggle="modal" data-target="#form-modal-<%= campaign[:id] %>"></i></td>
+        <%= render partial: "campaigns/modal_form", locals: { campaign: campaign } %>
         </tr>
     <% end %>
     </tbody>
 </table>
 <%= paginate @resources %>
+<script>
+  $("input#campaign_form_location").geocomplete();
+  $(".select2").select2();
+</script>

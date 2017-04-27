@@ -1,0 +1,7 @@
+<%= simple_form_for(product, html: { class: 'form-horizontal' }, method: :put) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :code %>
+  <%= f.input :price %>
+  <%= f.input :unit %>
+  <%= f.submit :Update, class: "btn btn-primary" %>
+<% end %>

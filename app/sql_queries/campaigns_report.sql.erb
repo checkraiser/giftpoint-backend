@@ -1,0 +1,9 @@
+select c.id,c.name,c.content,c.start_time,c.end_time,c.location,c.product_count,p.name
+From campaigns c
+inner join products p on c.product_id=p.id
+Where
+date_trunc('day',c.created_at) between <%= quote date_from %> and <%= quote date_to %>
+date1 between date_trunc('day',c.start_time) and date_trunc('day',c.end_time)
+and lower(c.location) like lower('%Hai Phong%')
+and lower(p.name) like lower('%Ten sp can loc%') 
+Order by c.start_time;

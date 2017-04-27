@@ -3,17 +3,17 @@ Rails.application.routes.draw do
   get '/promotion', to: 'gift_statuses#index'
   post '/promotion', to: 'gift_statuses#create'
   post '/find_promotion', to: 'gift_statuses#find'
-  resources :products, only: [:index, :new, :create] do 
+  resources :products, only: [:index, :new, :create, :update] do 
   	collection do 
   	  post :import
   	end
   end
-  resources :users, only: [:index, :new, :create] do 
+  resources :users, only: [:index, :new, :create, :update] do 
     collection do 
       post :import_resellers
     end
   end
-  resources :customers, only: [:index] do 
+  resources :customers, only: [:index, :show, :update] do 
   	collection do 
   	  post :import
   	  post :generate_code

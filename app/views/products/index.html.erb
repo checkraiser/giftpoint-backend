@@ -3,13 +3,14 @@
   <%= file_field_tag :file %>
   <%= submit_tag "Import" %>
 <% end %>
-<table class="table" data-toggle="table">
+<table class="table table-bordered table-condensed table-striped" data-toggle="table">
     <thead>
         <tr>
             <th data-field="name">Name</th>
             <th data-field="code">Code</th>
             <th data-field="price">Price</th>
             <th data-field="unit">Unit</th>
+            <th data-field="edit">Edit</th>
         </tr>
     </thead>
     <tbody>
@@ -19,6 +20,8 @@
         <td><%= product.code %></td>
         <td><%= product.price %></td>
         <td><%= product.unit %></td>
+        <td><i class="fa fa-pencil-square-o" aria-hidden="true" data-toggle="modal" data-target="#form-modal-<%= product.id %>"></i></td>
+        <%= render partial: "products/modal_form", locals: { product: product } %>
         </tr>
     <% end %>
     </tbody>

@@ -1,7 +1,7 @@
 class CampaignsController < ApplicationController
   before_action :require_admin
   before_action :require_campaign, only: [:show, :edit, :update]  
-  before_action :require_cities, only: [:index]
+  before_action :require_products, only: [:new]
 
   def index    
     query = CampaignSearchQuery.new(params[:date], params[:city], params[:product_name])
@@ -30,6 +30,12 @@ class CampaignsController < ApplicationController
   end
 
   def update
+    command = UpdateRecord.call(campaign, update_campaign_params)
+    if command.success?
+      redirect_to campaigns_path, success: "Updated successfully"
+    else
+      redirect_to campaigns_path, error: "Update error"
+    end
   end
 
   private
@@ -46,12 +52,25 @@ class CampaignsController < ApplicationController
     )
   end
 
+  def update_campaign_params
+    params.require(:campaign).permit(
+      :name,
+      :content,
+      :location,
+      :product_count
+    )
+  end
+
   def require_campaign
     @campaign ||= Campaign.find_by_id(params[:id])
     redirect_to root_path and return unless @campaign
   end
 
-  def require_cities
-    @cities ||= Campaign.pluck(:location)
+  def require_products
+    @products ||= Product.all
+  end
+
+  def campaign
+    @campaign
   end
 end

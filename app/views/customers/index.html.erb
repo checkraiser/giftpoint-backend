@@ -1,17 +1,48 @@
-<table class="table" data-toggle="table">
+<% content_for(:css_include) do %>
+  <style>
+    .vertical-alignment-helper {
+        display:table;
+        height: 100%;
+        width: 100%;
+        pointer-events:none;
+    }
+    .vertical-align-center {
+        /* To center vertically */
+        display: table-cell;
+        vertical-align: middle;
+        pointer-events:none;
+    }
+    .modal-content {
+        /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+        width:inherit;
+        height:inherit;
+        /* To center horizontally */
+        margin: 0 auto;
+        pointer-events:all;
+    }
+  </style>
+<% end %>
+<table class="table table-bordered table-condensed table-striped" data-toggle="table">
     <thead>
         <tr>
             <th data-field="id">ID</th>
             <th data-field="name">Name</th>
             <th data-field="phone">Phone</th>
+            <th data-field="city">City</th>
+            <th data-field="address">Address</th>
+            <th data-field="edit">Edit</th>
         </tr>
     </thead>
     <tbody>
     <% @resources.each do |customer| %>
         <tr>
-        <td><%= customer.id %> </td>
+        <td><%= link_to customer.name, customer_path(customer) %> </td>
         <td><%= customer.name %></td>
         <td><%= customer.phone %></td>
+        <td><%= customer.city %></td>
+        <td><%= customer.address %></td>
+        <td><i class="fa fa-pencil-square-o" aria-hidden="true" data-toggle="modal" data-target="#form-modal-<%= customer.id %>"></i></td>
+        <%= render partial: "customers/modal_form", locals: { customer: customer } %>
         </tr>
     <% end %>
     </tbody>

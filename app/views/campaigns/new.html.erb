@@ -26,7 +26,7 @@
   </div>
   <div class="row">
   	<div class="col-md-6">
-  		<%= f.input :product_id, collection: Product.all, input_html: { class: "select2" } %>
+  		<%= f.input :product_id, collection: @products, input_html: { class: "select2" } %>
   	</div>
 	</div>
 	<%= f.submit :Create, class: "btn btn-primary" %>  		
@@ -35,8 +35,6 @@
   
 <% end %>
 <script>
-$(document).ready(function(){
 	$("input#campaign_form_location").geocomplete();
 	$(".select2").select2();
-});
 </script>

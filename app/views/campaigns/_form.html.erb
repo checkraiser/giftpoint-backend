@@ -1,0 +1,7 @@
+<%= simple_form_for(:campaign, url: campaign_path(campaign[:id]), html: { class: 'form-horizontal' }, method: :put) do |f| %>
+  <%= f.input :name, input_html: { value: campaign[:name] } %>
+  <%= f.input :content, input_html: { value: campaign[:content] }  %>
+  <%= f.input :location, input_html: { value: campaign[:city] }  %>
+  <%= f.input :product_count, input_html: { value: campaign[:product_count] }  %>
+  <%= f.submit :Update, class: "btn btn-primary" %>
+<% end %>

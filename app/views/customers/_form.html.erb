@@ -1,0 +1,7 @@
+<%= simple_form_for(customer, html: { class: 'form-horizontal' }, method: :put) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :phone %>
+  <%= f.input :city %>
+  <%= f.input :address %>
+  <%= f.submit :Update, class: "btn btn-primary" %>
+<% end %>
