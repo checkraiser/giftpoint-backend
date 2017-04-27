@@ -8,6 +8,6 @@ Where <%= quote @date %> between date_trunc('day',c.start_time) and date_trunc('
 and c.location like <%= quote @city %>
 <% end %>
 <% if @product_name.present? %>
-and p.name like  <%= quote "#{@product_name}%" %>
+and p.name like  <%= quote "%#{@product_name}%" %>
 <% end %>
 Order by c.start_time;
