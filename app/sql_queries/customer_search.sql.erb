@@ -1,0 +1,7 @@
+select customers.phone as customer_phone, customers.name as customer_name, p.name as product_name,c.product_count as product_count
+From campaigns c
+inner join products p on c.product_id=p.id
+inner join campaign_customers on c.id=campaign_customers.campaign_id
+inner join customers on campaign_customers.customer_id=customers.id  
+Where c.id= <%= quote @campaign_id %>
+Order by customers.name
