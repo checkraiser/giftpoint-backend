@@ -1,0 +1,17 @@
+select c.name as campaign_name, c.id as campaign_id, p.code as product_code, p.id as product_id, p.name as product_name,c.product_count,c.start_time,c.end_time
+From campaigns c
+inner join products p on c.product_id=p.id
+inner join campaign_customers on c.id=campaign_customers.campaign_id
+<% if @has_filter %>
+Where 
+<% end %>
+<% if @has_dates_filter %>
+date_trunc('day',c.created_at) between <%= quote @date1 %> and <%= quote @date2 %>
+<% end %>
+<% if @has_dates_filter && @has_campaign_name_filter %>
+and 
+<% end %>
+<% if @has_campaign_name_filter %>
+lower(c.name) like lower(<%= quote "%#{@campaign_name}%" %>)
+<% end %>
+Order by p.name

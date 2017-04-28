@@ -38,6 +38,16 @@ class CampaignsController < ApplicationController
     end
   end
 
+  def cost_report
+    query = CampaignCostReportQuery.new(params[:date1], params[:date2])
+    @resources = paginate(query.render)
+  end
+
+  def time_report
+    query = CampaignTimeReportQuery.new
+    @resources = paginate(query.render)
+  end
+
   private
 
   def campaign_params

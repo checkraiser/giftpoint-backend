@@ -1,2 +1,9 @@
-select *  from campaigns
-where campaigns.customer_id = <%= quote @customer_id %>
+select d.id as customers_id, a.id as campaign_id, a.name as campaign_name,b.name as product_name,a.start_time,a.end_time,a.product_count,c.created_at,c.sms_status,c.gift_status,c.code_status
+From campaigns a
+inner join products b on a.product_id=b.id
+inner join campaign_customers c on a.id=c.campaign_id
+inner join customers d on c.customer_id=d.id  
+Where d.id=<%= quote @customer_id %> 
+<% if @date1.present? && @date2.present? %>
+and date_trunc('day',c.created_at) between <%= quote @date1 %> and <%= quote @date2 %>
+<% end %>

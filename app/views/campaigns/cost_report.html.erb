@@ -1,0 +1,23 @@
+<%= render "campaigns/common" %>
+
+<h2>Campaigns Cost Report:</h2>
+
+<table class="table table-bordered table-condensed table-striped" data-toggle="table">
+    <thead>
+        <tr>
+            <th data-field="name">Campaign Name</th>
+            <th data-field="total">Total</th>
+            <th data-field="customers_count">Customers Count</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @resources.each do |resource| %>
+        <tr>
+        <td><%= link_to resource[:campaign_name], campaign_path(resource[:campaign_id]) %></td>
+        <td><%= resource[:total] %></td>
+        <td><%= resource[:customers_count] %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+<%= paginate @resources %>

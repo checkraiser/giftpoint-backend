@@ -1,0 +1,32 @@
+<h2>Campaigns' list</h2>
+<table class="table table-bordered table-condensed table-striped" data-toggle="table">
+    <thead>
+        <tr>
+        	<th data-field="campaign_id">Campaign</th>
+            <th data-field="product_name">Product Name</th>
+            <th data-field="start_time">Start Time</th>
+            <th data-field="end_time">End Time</th>
+            <th data-field="product_count">Product Count</th>
+            <th data-field="created_at">Created At</th>
+            <th data-field="sms_status">Sms</th>
+            <th data-field="gift_status">Gift</th>
+            <th data-field="code_status">Code Status</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% resources.each do |resource| %>
+        <tr>
+        <td><%= link_to resource[:campaign_name], campaign_path(resource[:campaign_id]) %> </td>
+        <td><%= resource[:product_name] %></td>
+        <td><%= resource[:start_time] %></td>
+        <td><%= resource[:end_time] %></td>
+        <td><%= resource[:product_count] %></td>
+        <td><%= resource[:created_at] %></td>
+        <td><%= resource[:sms_status] %></td>
+        <td><%= resource[:gift_status] %></td>
+        <td><%= resource[:code_status] %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+<%= paginate resources %>

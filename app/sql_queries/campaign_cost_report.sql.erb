@@ -1,0 +1,18 @@
+select kp.id as campaign_id ,kp.name as campaign_name ,kp.total as total ,slg.slg as customers_count
+from (
+select c.id,c.name,c.product_count*p.price as total
+From campaigns c
+inner join products p on c.product_id=p.id
+<% if @has_dates_filter %>
+Where date_trunc('day',c.created_at) between date1 and date2
+<% end %>
+) As kp
+inner join (select campaign_customers.campaign_id,count(*) Slg
+from campaign_customers
+inner join campaigns c on campaign_customers.campaign_id=c.id
+<% if @has_dates_filter %>
+where date_trunc('day',c.created_at) between date1 and date2
+<% end %>
+Group by campaign_customers.campaign_id
+) AS slg
+On kp.id=slg.campaign_id

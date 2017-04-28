@@ -1,0 +1,17 @@
+<table class="table table-bordered table-condensed table-striped" data-toggle="table">
+    <thead>
+        <tr>
+            <th data-field="name">Product Name</th>
+            <th data-field="code">Product Count</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% resources.each do |resource| %>
+        <tr>
+        <td><%= resource[:product_name] %></td>
+        <td><%= resource[:product_count] %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+<%= paginate resources %>

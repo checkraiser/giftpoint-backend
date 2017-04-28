@@ -1,0 +1,12 @@
+select s.product_name,count(*) product_count 
+from (
+select a.campaign_id,c.name product_name
+from campaign_customers a
+inner join campaigns b on a.campaign_id=b.id
+inner join products c on b.product_id=c.id
+<% if @has_dates_filter %>
+where date_trunc('day',b.created_at) between <%= quote @date1 %> and <%= quote @date2 %>
+<% end %>
+) s
+group by s.product_name
+Order by product_count desc

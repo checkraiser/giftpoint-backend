@@ -22,7 +22,12 @@ Rails.application.routes.draw do
       post :import_sms
   	end
   end
-  resources :campaigns, only: [:index, :new, :create, :edit, :update, :show]    
+  resources :campaigns, only: [:index, :new, :create, :edit, :update, :show] do 
+    collection do 
+      get :cost_report
+      get :time_report
+    end
+  end
   get '/login', to: 'sessions#new', as: :login
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

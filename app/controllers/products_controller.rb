@@ -4,6 +4,10 @@ class ProductsController < ApplicationController
 
   def index
   	@resources = paginate(Product)
+    query = CampaignProductsQuery.new(params[:campaign_name], params[:date1], params[:date2])
+    favorite_products_query = FavoriteProductsQuery.new(params[:date1], params[:date2])
+    @campaign_products = paginate(query.render)
+    @favorite_products = paginate(favorite_products_query.render)
   end
 
   def new

@@ -1,19 +1,12 @@
-<%= form_tag(customers_path, :method => "get", id: "search-form", class: "form-horizontal") do %>
+<%= form_tag(customer_path(customer), :method => "get", id: "search-form", class: "form-horizontal") do %>
   <div class="row">
-  	<div class="col-md-3">
-	<%= select_tag :city, options_for_select(@cities), :include_blank => 'All Cities', class: "dropdown" %>
+	<div class="col-md-3">
+		<input type="text" data-provide='datepicker' class='form-control' name="date1" placeholder="Choose start date" value = <%= params[:date1].present? ? params[:date1] : "" %> >
 	</div>
 	<div class="col-md-3">
-		<input type="text" class="form-control" data-provide='datepicker' name="date", placeholder="Choose a date" />
-	</div>
-	<div class="col-md-3">
-		<input type="text" class="form-control" name="product_name", placeholder="Product name" />
+		<input type="text" data-provide='datepicker' class='form-control' name="date2" placeholder="Choose end date" value = <%= params[:date2].present? ? params[:date2] : "" %> >
 	</div>
 	<div class="col-md-3">
     	<%= submit_tag "Search", :name => nil, class: "btn btn-primary" %>
     </div>
 <% end %>
-<script>
-$( ".dropdown" ).select2({
-    theme: "bootstrap"
-});

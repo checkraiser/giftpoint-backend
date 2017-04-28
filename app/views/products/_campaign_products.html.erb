@@ -1,0 +1,25 @@
+<table class="table table-bordered table-condensed table-striped" data-toggle="table">
+    <thead>
+        <tr>
+            <th data-field="name">Campaign Name</th>
+            <th data-field="code">Product Code</th>
+            <th data-field="price">Product Name</th>
+            <th data-field="unit">Product Count</th>
+            <th data-field="edit">Start Time</th>
+            <th data-field="edit">End Time</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% resources.each do |resource| %>
+        <tr>
+        <td><%= link_to resource[:campaign_name], campaign_path(resource[:campaign_id]) %></td>
+        <td><%= resource[:product_code] %></td>
+        <td><%= resource[:product_name] %></td>
+        <td><%= resource[:product_count] %></td>
+        <td><%= resource[:start_time] %></td>
+        <td><%= resource[:end_time] %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+<%= paginate resources %>

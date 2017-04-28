@@ -1,1 +1,7 @@
-<%= render partial: "customers/info", locals: { customer: @resource }
+<div class="well">
+<%= render partial: "customers/info", locals: { customer: @resource } %>
+</div>
+<hr>
+<%= render partial: "customers/search", locals: { customer: @resource } %>
+<hr><br/>
+<%= render partial: "customers/campaigns_list", locals: { resources: @resources } %>

@@ -1,0 +1,21 @@
+Select  s1.campaign_id,s1.month,s1.slg customer_count,s2.product_name,s2.slg product_count
+from (
+select s.campaign_id,s.month,count(*) slg  
+from (
+select campaign_id, date_part( 'month', created_at) as month
+from campaign_customers 
+) s
+group by s.campaign_id,s.month
+) as s1
+inner join 
+(select s.campaign_id,s.product_name,s.month,count(*) slg  
+from (
+select a.campaign_id,c.name product_name, date_part( 'month', a.created_at) as month
+from campaign_customers a
+inner join campaigns b on a.campaign_id=b.id
+inner join products c on b.product_id=c.id 
+) s
+group by s.campaign_id,s.product_name,s.month
+) as s2
+on s1.campaign_id=s2.campaign_id and s1.month=s2.month
+Order by s1.month,Product_count;

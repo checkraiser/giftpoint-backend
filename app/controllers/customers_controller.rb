@@ -17,7 +17,7 @@ class CustomersController < ApplicationController
   end
 
   def show
-    query = CustomerQuery.new(customer.id)
+    query = CustomerQuery.new(customer.id, params[:date1], params[:date2])
     @resource = customer
     @resources = paginate(query.render)
   end

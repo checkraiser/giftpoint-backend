@@ -77,7 +77,7 @@ Order by p.name
 --- Kinh phí của các chiến dịch
 --- Số lượng nông dân tham dự của các chiến dịch
 --date1 la tham so can truyen vao
-select kp.id,kp.name,kp.total,slg.slg slg_nguoi
+select kp.id as,kp.name,kp.total,slg.slg slg_nguoi
 from (
 select c.id,c.name,c.product_count*p.price as total
 From campaigns c
