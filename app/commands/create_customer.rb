@@ -1,9 +1,11 @@
 class CreateCustomer < BaseCommand
   prepend SimpleCommand
   
-  def initialize(name, phone)
+  def initialize(name, phone, city, address)
     @name = name
   	@phone = phone
+    @city = city
+    @address = address
   end
 
   def call
@@ -16,13 +18,15 @@ class CreateCustomer < BaseCommand
   
   private
 
-  attr_accessor :name, :phone
+  attr_accessor :name, :phone, :city, :address
 
   def create_customer
   	customer = Customer.find_by(phone: phone)
     return customer if customer
     customer = Customer.new name: name,
-                            phone: phone
+                            phone: phone,
+                            city: city,
+                            address: address
     return customer if customer.save
   	prepend_errors(customer)
   	nil

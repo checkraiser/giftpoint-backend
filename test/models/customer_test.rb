@@ -6,7 +6,7 @@ class CustomerTest < ActiveSupport::TestCase
   # end
 
   test "create customer" do 
-  	customer = CreateCustomer.call("customer 1", "01214115322")
+  	customer = CreateCustomer.call("customer 1", "01214115322", "city", "address")
   	assert Customer.all, [customer]
   end
 end

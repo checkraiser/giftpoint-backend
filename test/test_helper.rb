@@ -20,22 +20,22 @@ module CampaignHelper
 
   def campaign_customers
     return @campaign_customers if @campaign_customers
-    ImportCustomer.call(campaign, "customer 1", "01214115322")
-    ImportCustomer.call(campaign, "customer 2", "01214115323")
+    ImportCustomer.call(campaign, "customer 1", "01214115322", "hehe", "abc")
+    ImportCustomer.call(campaign, "customer 2", "01214115323", "hehe", "abc")
     @campaign_customers = CampaignCustomer.all
   end
 
   def approved_campaign_customers
     return @campaign_customers if @campaign_customers
-    ImportCustomer.call(campaign, "customer 1", "01214115322")
-    ImportCustomer.call(campaign, "customer 2", "01214115323")    
+    ImportCustomer.call(campaign, "customer 1", "01214115322", "hehe", "abc")
+    ImportCustomer.call(campaign, "customer 2", "01214115323", "hehe", "abc")    
     BatchGenerateCustomerCodes.call CampaignCustomer.all
     ApproveCampaignCustomers.call(CampaignCustomer.all)
     @campaign_customers = CampaignCustomer.approved
   end
 
   def campaign_customer
-  	@campaign_customer ||= ImportCustomer.call(campaign, "customer 1", "01214115322").result
+  	@campaign_customer ||= ImportCustomer.call(campaign, "customer 1", "01214115322", "hehe", "abc").result
   end
 
   def product
