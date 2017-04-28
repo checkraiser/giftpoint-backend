@@ -1,5 +1,6 @@
 #!/bin/bash
 . ~/.bashrc
+sudo docker rmi $(sudo docker images)
 sudo docker pull checkraiser/giftpoint-backend
 sudo docker stop backend
 sudo docker rm backend 

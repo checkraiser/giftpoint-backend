@@ -7,6 +7,10 @@ DatabaseCleaner.strategy = :truncation
 DatabaseCleaner.start
 
 module CampaignHelper
+  def reseller
+    @reseller ||= CreateReseller.call("Reseller", "reseller@gmail.com", "123123123").result
+  end
+
   def campaign
   	@campaign ||= CreateCampaign.call("campaign 1", "content", time, time + 1.month, "Hai Phong", 10, product).result
   end
